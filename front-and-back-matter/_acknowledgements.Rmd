@@ -1,13 +1,23 @@
-This is where you will normally thank your advisor, colleagues, family and friends, as well as funding and institutional support. In our case, we will give our praises to the people who developed the ideas and tools that allow us to push open science a little step forward by writing plain-text, transparent, and reproducible theses in R Markdown. 
+When one decides to do a doctoral thesis in their forties, there have been many consorts along the way that deserve to be thanked. Far too many.
 
-We must be grateful to John Gruber for inventing the original version of Markdown, to John MacFarlane for creating Pandoc (<http://pandoc.org>) which converts Markdown to a large number of output formats, and to Yihui Xie for creating `knitr` which introduced R Markdown as a way of embedding code in Markdown documents, and `bookdown` which added tools for technical and longer-form writing.
+While the research I conducted for this thesis was motivated by an ecological crisis and a sense of urgency that trascend any particular place, I understand my work primarily through the localised efforts of the collectives I am part of. The decision to undertake a PhD goes back to a commitment my collective at Multimedia Institute/MAMA in Zagreb took more than a decade ago. We decided to continue articulating, organising, and struggling for the alternatives to transform our post-socialist, monoethnic, peripheral capitalist society — including through research. For this decision I want to thank that collective, foremost Petar Milat, Teodor Celakoski, and Marcell Mars. Marcell has been my closest collaborator over the last decade and has opened the institutional avenue for this research.
 
-Special thanks to [Chester Ismay](http://chester.rbind.io), who created the `thesisdown` package that helped many a PhD student write their theses in R Markdown. And a very special thanks to John McManigle, whose adaption of Sam Evans' adaptation of Keith Gillow's original maths template for writing an Oxford University DPhil thesis in LaTeX provided the template that I in turn adapted for R Markdown.
+Since the mid-2000s that collective has helped organise social and political forces — the Right to the City movement in Zagreb and the municipalist green-left parties Zagreb je NAŠ! and Možemo! — that have made the analysis in this research politically necessary. If this research will contribute to its avowed goal of steering the industrial-capitalist social metabolism toward just and sustainable futures, it will be through the work of people active in and around these forces and my involvement in them. I am indebted to them for their political engagement, constant encouragement of my research, and a shared commitment to organise and intervene politically.
 
-Finally, profuse thanks to JJ Allaire, the founder and CEO of [RStudio](http://rstudio.com), and Hadley Wickham, the mastermind of the tidyverse without whom we'd all just given up and done data science in Python instead. Thanks for making data science easier, more accessible, and more fun for us all.
+This thesis stands on the shoulders of the organisations that I have collaborated with: Institute for Political Ecology and Unite the Union. Their commitment to transforming the present environmentally unsustainable and socially unjust system has grounded and guided my research. I am grateful for the camaraderie of their present and past collaborators: Mladen Domazet, Vedran Horvat, Andro Rilović, Nikolina Rajković, Tina Tešija, Jim Mowatt, Colin Potter, and Joan Francis, whom I wish success in their future efforts. Their work will continue to be my lodestar.
 
-\begin{flushright}
-Ulrik Lyngs \\
-Linacre College, Oxford \\
-2 December 2018
-\end{flushright}
+To my supervisors, Gary Hall and Janneke Adema I want to thank for accepting the challenge to mentor a thesis that was initially overambitious and then increasingly drifted further away from their expertise, as well as for constant prodding to find my own voice and to kick the habits of writing I have acquired throughout the last two decades of my activist work. The contribution to knowledge, the coherence of the structure, and the solidity of the argument are the fruit of their careful reading and their intellectual generosity.
+
+The chapters of this thesis, in various stages of completion, were read by my Coventry University colleagues Peter Conlin, Adrienne Evans, and Chris Maughan. Their comments contributed to shaping the argument and structure beyond the chapters they had read.
+
+On a more personal note, since I started my PhD in 2018, many friends have followed first hand the process and helped me navigate through the obstacles of migrant life. First among many, my co-conspirator Valeria Graziano, but also Maddalena Fragnito, Rebekka Kiesewetter, Kaja Marczewska, and Scott DeLahunta.
+
+When one decides to do a doctoral thesis in their forties in another country, the lives of one's closest get disrupted. For their unwavering support, encouragement, and patience, I owe everything to my partner Ivana Ivković and my mother Anka Medak. They have helped me through my moments of doubt.
+
+I dedicate this thesis to my late father, Ivan Medak, who has gone out of his way to help me never feel limited by the social circumstances of my disability and who has been absent from my life for over a quarter of a century. I regret not being able to share my concerns over the livable futures of others with him. It is a seed he has planted.
+
+\pagebreak
+\mbox{}
+\vfill
+
+Earlier versions of some of the materials in this thesis were published as “Degrowth”, a co-authored contribution to the *Encyclopedia of the World’s Biomes*; as “Na ulicama Francuske povijest anticipira budućnost”,a reflection text on yellow vests published in *Novi Plamen*, December 20, 2018; and as “Fragilità, cura e azione politica”, a reflection text written in March 2020 on the coronavirus and the planetary environmental crisis, included in the collected volume *Dialoghi sulll pandemia: Crisi, riproduzione, lotte*, edited by Ecologia Politica Network, red star press, 2021. Some of the materials were self-published within the Pirate Care project (https://syllabus.pirate.care) and on my website (https://tomislav.medak.click).

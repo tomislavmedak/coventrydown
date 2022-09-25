@@ -7,7 +7,7 @@
 # The format options are: 'pdf', 'bs4', 'gitbook', 'word'
 # E.g. you can build both pdf and html with 'thesis_formats <- c("pdf", "bs4")'
 knit: (function(input, ...) {
-    thesis_formats <- "pdf";
+    thesis_formats <- c("pdf", "gitbook", "word");
     
     source("scripts_and_filters/knit-functions.R");
     knit_thesis(input, thesis_formats, ...)
@@ -17,18 +17,19 @@ knit: (function(input, ...) {
 ## thesis metadata ##
 #####################
 title: |
-  `oxforddown`: \
-  An Oxford University Thesis \
-  Template for R Markdown
-author: Author Name
-college: Your College
-university: University of Oxford
-university-logo: templates/beltcrest.pdf
+  Disrupting technologies: \
+  can the planetary technosphere be steered politically toward a post-capitalist metabolism?
+author: Tomislav Medak
+college: |
+  Centre for Postdigital Cultures \
+  Faculty of Arts and Humanities
+university: Coventry University
+university-logo: templates/CU_logo.pdf
 university-logo-width: 5cm
-submitted-text: A thesis submitted for the degree of
+submitted-text: A thesis submitted in partial fulfilment of the University's requirements for the degree of
 degree: Doctor of Philosophy
-degreedate: Michaelmas 2018
-dedication: For Yihui Xie
+degreedate: June 2022
+dedication: For my father
 acknowledgements: |
   `r paste(readLines("front-and-back-matter/_acknowledgements.Rmd"), collapse = '\n  ')`
 show-acknowledgements-in-toc: false
@@ -37,8 +38,9 @@ abstract: |
   `r paste(readLines("front-and-back-matter/_abstract.Rmd"), collapse = "\n  ")`
 show-abstract-in-toc: false
 # add a second abstract with abstract-second-heading: "Abstract two", and abstract-second: "My abstract"
-abbreviations: |
-  `r paste(readLines("front-and-back-matter/_abbreviations.Rmd"), collapse = '\n  ')`
+# abbreviations: |
+#  `r paste(readLines("front-and-back-matter/_abbreviations.Rmd"), collapse = '\n  ')`
+show-abbreviations-in-toc: false
 
 #######################
 ## bibliography path ##
@@ -60,18 +62,19 @@ word-count: "10,052"
 # alternative-title-page: templates/alt-title-page-example.tex
 
 ### abbreviations ###
-abbreviations-width: 3.2cm
-abbreviations-heading: List of Abbreviations
+abbreviations-width: 4.5cm
+abbreviations-heading: Glossary
 
 
 ### citation and bibliography style ###
-# the title for the references section is created by front-and-back-matter/99-references_heading.Rmd, 
-# but you can set it from here for convenience
+# heading title for the references section
 params:
+  insertReferencesHeadingInPDF: true
+  insertReferencesHeadingInOtherOutput: true
   referenceHeading: "References"
 
 # citation and reference options (pandoc) #
-csl: bibliography/apa.csl # try csl: bibliography/transactions-on-computer-human-interaction.csl for numerical citations
+csl: bibliography/chicago-author-date.csl # try csl: bibliography/transactions-on-computer-human-interaction.csl for numerical citations
 refs-line-spacing: 6mm
 refs-space-between-entries: 1mm
 
@@ -80,9 +83,9 @@ refs-space-between-entries: 1mm
 # bib-latex-options: "style=authoryear, sorting=nyt, backend=biber, maxcitenames=2, useprefix, doi=true, isbn=false, uniquename=false" #for science, you might want style=numeric-comp, sorting=none for numerical in-text citation with references in order of appearance
 
 ## natbib options ##
-# use-natbib: true # set to true, and set "output:bookdown::pdf_book: citation_package: natbib"
-# natbib-citation-style: authoryear #for science, you might want numbers,square
-# natbib-bibliography-style: templates/ACM-Reference-Format.bst #e.g. "plainnat", unsrtnat, or path to a .bst file
+#use-natbib: true # set to true, and set "output:bookdown::pdf_book: citation_package: natbib"
+#natbib-citation-style: authoryear #for science, you might want numbers,square
+#natbib-bibliography-style: templates/ACM-Reference-Format.bst #e.g. "plainnat", unsrtnat, or path to a .bst file
 
 
 ### correction highlighting ###
@@ -106,14 +109,12 @@ toc-link-page-numbers: true
 page-layout: nobind #'nobind' for equal margins (PDF output), 'twoside' for two-sided binding (mirror margins and blank pages), leave blank for one-sided binding (left margin > right margin)
 
 ### position of page numbers ###
-#C = center, R = right, L = left. If page layout is 'twoside', O = odd pages and E = even pages. E.g. RO,LE puts the page number to the right on odd pages and left on even pages
 ordinary-page-number-foot-or-head: foot #'foot' puts page number in footer, 'head' in header
-ordinary-page-number-position: C
+ordinary-page-number-position: C  #C = center, R = right, L = left. If page layout is 'twoside', O = odd pages and E = even pages. E.g. RO,LE puts the page number to the right on odd pages and left on even pages
 chapter-page-number-foot-or-head: foot #you may want it to be different on the chapter pages
 chapter-page-number-position: C
 
 ### position of running header ###
-#C = center, R = right, L = left. If page layout is 'twoside', O = odd pages and E = even pages. E.g. RO,LE puts the page number to the right on odd pages and left on even pages
 running-header: true #indicate current chapter/section in header?
 running-header-foot-or-head: head
 running-header-position-leftmark: LO #marks the chapter. If layout is 'nobind', only this is used.
@@ -131,7 +132,7 @@ section-numbering-depth: 2 # to which depth should headings be numbered?
 ### tables of content ###
 toc-depth: 1 # to which depth should headings be included in table of contents?
 lof: true # include list of figures in front matter?
-lot: true # include list of tables in front matter?
+lot: false # include list of tables in front matter?
 mini-toc: true  # include mini-table of contents at start of each chapter? (this just prepares it; you must also add \minitoc after the chapter titles)
 mini-lot: false  # include mini-list of tables by start of each chapter?
 mini-lof: false  # include mini-list of figures by start of each chapter?
@@ -162,7 +163,6 @@ line-wrapping-in-code: true #wrap overflowing lines in code blocks?
 output:
   bookdown::pdf_book:
     template: templates/template.tex
-    latex_engine: xelatex
     keep_tex: true
     pandoc_args: "--lua-filter=scripts_and_filters/colour_and_highlight.lua"
   bookdown::bs4_book: 
@@ -171,7 +171,7 @@ output:
       - templates/corrections.css # remove to stop highlighting corrections
     theme:
       primary: "#6D1919"
-    repo: https://github.com/ulyngs/oxforddown
+    repo: https://gitlab.com/tomislavmedak/coventry_in_down
     pandoc_args: "--lua-filter=scripts_and_filters/colour_and_highlight.lua"
   bookdown::gitbook:
     css: templates/style.css
@@ -181,7 +181,9 @@ output:
         twitter: yes
         all: false
   bookdown::word_document2:
-    toc: true   
+    toc: true 
+    pandoc_args: "--reference-doc=templates/custom-reference.docx"   
+    
 link-citations: true
 documentclass: book
 always_allow_html: true #this allows html stuff in word (.docx) output
@@ -203,6 +205,3 @@ This will include code to create additional chunk options (e.g. for adding autho
 If you need to create your own additional chunk options, edit the file scripts/create_chunk_options.R
 -->
 
-<!-- This chunk includes the front page content in HTML output -->
-```{r ebook-welcome, child = 'front-and-back-matter/_welcome-ebook.Rmd', eval=knitr::is_html_output()}
-```

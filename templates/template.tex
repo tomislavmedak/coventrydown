@@ -35,8 +35,6 @@
 %%%%% ADDING LATEX PACKAGES
 % add hyperref package with options from YAML %
 \usepackage[pdfpagelabels]{hyperref}
-% handle long urls
-\usepackage{xurl}
 % change the default coloring of links to something sensible
 \usepackage{xcolor}
 
@@ -93,6 +91,15 @@ $endif$
 \soulregister\autocite7
 \soulregister\textcite7
 \soulregister\pageref7
+
+% enable wrapping of URLs stretching over two lines
+\usepackage{xurl}
+
+% enable UTF8 
+\usepackage[utf8]{inputenc}
+
+% enable adding PDFs
+\usepackage{pdfpages}
 
 %%%%% FIXING / ADDING THINGS THAT'S SPECIAL TO R MARKDOWN'S USE OF LATEX TEMPLATES
 % pandoc puts lists in 'tightlist' command when no space between bullet points in Rmd file,
@@ -153,6 +160,17 @@ $endif$
 \fancy$ordinary-page-number-foot-or-head$[$ordinary-page-number-position$]{\emph{\thepage}} %regular pages
 \fancypagestyle{plain}{\fancyhf{}\fancy$chapter-page-number-foot-or-head$[$chapter-page-number-position$]{\emph{\thepage}}} %chapter pages
 
+% JEM fix header on cleared pages for openright
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+   \hbox{}
+   \fancy$ordinary-page-number-foot-or-head$[$ordinary-page-number-position$]{}
+   \newpage
+   \if@twocolumn\hbox{}\newpage
+   \fi
+   \fancy$running-header-foot-or-head$[$running-header-position-leftmark$]{\emph{\leftmark}} 
+   \fancy$running-header-foot-or-head$[$running-header-position-rightmark$]{\emph{\rightmark}} 
+   \fi\fi}
+
 
 %%%%% SELECT YOUR DRAFT OPTIONS
 % This adds a "DRAFT" footer to every normal page.  (The first page of each chapter is not a "normal" page.)
@@ -168,9 +186,8 @@ $endif$
 
 % for line wrapping in code blocks
 $if(line-wrapping-in-code)$
-\usepackage{fancyvrb}
 \usepackage{fvextra}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines=true, breakanywhere=true, commandchars=\\\{\}}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 $endif$
 
 % This highlights (in blue) corrections marked with (for words) \mccorrect{blah} or (for whole
@@ -326,6 +343,15 @@ $endif$
 \setcounter{secnumdepth}{$section-numbering-depth$}
 % The level that shows up in the ToC:
 \setcounter{tocdepth}{$toc-depth$}
+% The level that shows up in the miniToCs"
+\setcounter{minitocdepth}{1}
+
+
+%%%%% ETHICS CERTIFICATE
+\includepdf[pages=-]{inserted-PDFs/ethics-certificate.pdf}
+
+%%%%% CANDIDATE'S DECLARATION
+\includepdf[pages=-]{inserted-PDFs/candidates-declaration.pdf}
 
 
 %%%%% ABSTRACT SEPARATE
@@ -347,29 +373,6 @@ $if(alternative-title-page)$
 $else$
 \maketitle
 $endif$
-
-%%%%% DEDICATION
-$if(dedication)$
-\begin{dedication}
-  $dedication$
-\end{dedication}
-$endif$
-
-%%%%% ACKNOWLEDGEMENTS
-$if(acknowledgements)$
-
-$if(show-acknowledgements-in-toc)$
-\addcontentsline{toc}{chapter}{Acknowledgements}
-\renewcommand{\numberstyleacks}{plain}
-\renewcommand{\numberstyleabstract}{plain}
-$endif$
-
-\begin{acknowledgements}
- 	$acknowledgements$
-\end{acknowledgements}
-
-$endif$
-
 
 %%%%% ABSTRACT
 $if(abstract)$
@@ -399,6 +402,29 @@ $endif$
 \end{abstractsecond}
 
 $endif$
+
+%%%%% DEDICATION
+$if(dedication)$
+\begin{dedication}
+  $dedication$
+\end{dedication}
+$endif$
+
+%%%%% ACKNOWLEDGEMENTS
+$if(acknowledgements)$
+
+$if(show-acknowledgements-in-toc)$
+\addcontentsline{toc}{chapter}{Acknowledgements}
+\renewcommand{\numberstyleacks}{plain}
+\renewcommand{\numberstyleabstract}{plain}
+$endif$
+
+\begin{acknowledgements}
+ 	$acknowledgements$
+\end{acknowledgements}
+
+$endif$
+
 
 %%%%% MINI TABLES
 % This lays the groundwork for per-chapter, mini tables of contents.  Comment the following line
@@ -431,6 +457,7 @@ $if(lot)$
 \listoftables
   \mtcaddchapter
 $endif$
+
 %%%%% LIST OF ABBREVIATIONS
 % This example includes a list of abbreviations.  Look at text/abbreviations.tex to see how that file is
 % formatted.  The template can handle any kind of list though, so this might be a good place for a
@@ -462,7 +489,7 @@ $if(use-biblatex)$
 
 % we are setting the title for the references section in front-and-back-matter/99-references_heading.Rmd
 {\renewcommand*\MakeUppercase[1]{#1}%
-\printbibliography[heading=none]}
+\printbibliography[heading="References"]}
 
 $endif$
 
