@@ -1,24 +1,47 @@
-# How to cite
-If you use this template to write your thesis, please cite it! :smiling_face_with_three_hearts:
+# Coventrydown
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3484681.svg)](10.5281/zenodo.3484681)
+Coventrydown is a fork of Ulrik Lyngs's [oxfordown](https://github.com/ulyngs/oxforddown). Oxford University uses a [LaTeX thesis template](https://github.com/mcmanigle/OxThesis) that is similar to Coventry University's thesis structure. Below you will find Ulik Lyngs's detailed instricutions on how to build a thesis using oxforddown. He has created a series of [video tutorials on YouTube](https://www.youtube.com/watch?v=LBHxcuCMjnk&list=PLkIUogDmN_nA6f3UJ0tWHlxGITUjbuldE) to guide you through the individual steps.
 
+To build a Coventry University thesis using the coventrydown template, do the following:
 
-``` bibtex
-@misc{lyngsOxforddown2019,
-  author = {Lyngs, Ulrik},
-  title = {oxforddown: An Oxford University Thesis Template for R Markdown},
-  year = {2019},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/ulyngs/oxforddown}},
-  doi = {10.5281/zenodo.3484681},
-}
+* download [coventrydown](https://github.com/tomislavmedak/coventrydown) and open it in [RStudio](https://www.rstudio.com/products/rstudio/download/),
+* replace chapter `.Rmd` files with yours,
+* if you have your chapter titles in YAML front matter, move them to the top-level headings and change all the lower-level headings,
+* replace figures and tables in the `figures` folder and change in your chapters the paths to files accordingly,
+* replace `bibliography.bib` files in the `bibliography` folder,
+* add your citation style `.csl` file to the `bibliography` folder,
+* replace Declaration and Ethics forms in the `insert-PDFs` folder,
+* edit [index.Rmd](https://github.com/tomislavmedak/coventrydown/blob/master/index.Rmd) and [template.tex](https://github.com/tomislavmedak/coventrydown/blob/master/templates/template.tex) accordingly.
+
+Additionally, if you desire to have a list of figures, you need to transform the Markdown image links in your chapter files with the following R code:
+
+~~~~
+
+```{r echo=FALSE, fig.cap="long caption under the figure", fig.scap="short caption used in the list of figures", out.width="100%"}
+
+knitr::include_graphics("./figures/<filename>.jpg")
 ```
+
+~~~~
+
+For Coventry University's pre-viva submission, you have to add Candidate's Declaration, Ethics Approval, your data and published articles with permissions to the thesis, which are mostly separate, already existing PDFs. These PDFs are placed in the `inserted-PDFs` folder. As the Declaration and Ethics Approval should go after the title page, they are inserted into the thesis through the template.tex, whereas published articles are included as appendices through the `appendices.Rmd` file. To insert PDFs into the thesis use the following LaTeX code:
+
+~~~~
+
+\includepdf[pages=-]{inserted-PDFs/<filename>.pdf}
+
+~~~~
+
+To add a mini-ToC to chapters, add `\minitoc` after the chapter title and adapt the ToC-depth in the `index.Rmd` file.
+
+To build the thesis, you simply knit `index.Rmd`.
+
+What follows are Ulik's instructions for oxforddown.
 
 # Contents
 
 -   [Requirements](#requirements)
+-   [How to cite](#how-to-cite)
 -   [How to use](#how-to-use)
     -   [How-to chapters](#how-to-chapters)
     -   [Video tutorials](#video-tutorials)
@@ -48,11 +71,26 @@ Examples of theses written with `oxforddown` (see also [Google Scholar](https://
 -   [The Psychology of Managerial Capital Allocation](https://thesis.shirdekel.com) by [Shir Dekel](https://shirdekel.com)
 -   [Teens, Screens and Wellbeing: An Improved Approach](https://www.amyorben.com/docs/thesis/index.html) by [Amy Orben](https://www.amyorben.com)
 -   [Interpreting Neural Language Models for Linguistic Complexity Assessment](https://gsarti.com/thesis/introduction.html) by [Gabriele Sarti](https://gsarti.com)
--   [Modeling of nutrient dynamics in an urbanized tropical estuary and application to eutrophication risk management](https://drive.google.com/file/d/1UFT8NfDxHqbFnDNOEk3KtV0IYofb5Go8/view) by Nguyen Truong An
 
 
 *NOTE: If you've used this template to write your thesis, drop me a line at [ulrik.lyngs\@cs.ox.ac.uk](mailto:ulrik.lyngs@cs.ox.ac.uk) and I'll add a link showcasing it!*
 
+## How to cite
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4876326.svg)](https://doi.org/10.5281/zenodo.4876326)
+
+
+``` bibtex
+@misc{lyngsOxforddown2019,
+  author = {Lyngs, Ulrik},
+  title = {oxforddown: An Oxford University Thesis Template for R Markdown},
+  year = {2019},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/ulyngs/oxforddown}},
+  doi = {10.5281/zenodo.3484681},
+}
+```
 
 ## Requirements
 
@@ -75,15 +113,15 @@ Examples of theses written with `oxforddown` (see also [Google Scholar](https://
 
         ``` r
         missing_packages <- c(
-          "appendix", "babel-english", "babel-greek", "babel-latin", 
-          "biber", "biblatex", "caption", "cbfonts-fd", "colortbl", "csquotes", 
-          "enumitem", "environ", "eso-pic", "fancyhdr", "greek-fontenc", 
-          "grfext", "hyphen-greek", "hyphen-latin", "lineno", "logreq", 
-          "makecell", "microtype", "minitoc", "multirow", "notoccite", 
-          "oberdiek", "pdflscape", "pdfpages", "quotchap", "soul", "tabu", 
-          "threeparttable", "threeparttablex", "titlesec", "tocbibind", 
+          "appendix", "babel-english", "babel-greek", "babel-latin",
+          "biber", "biblatex", "caption", "cbfonts-fd", "colortbl", "csquotes",
+          "enumitem", "environ", "eso-pic", "fancyhdr", "greek-fontenc",
+          "grfext", "hyphen-greek", "hyphen-latin", "lineno", "logreq",
+          "makecell", "microtype", "minitoc", "multirow", "notoccite",
+          "oberdiek", "pdflscape", "pdfpages", "quotchap", "soul", "tabu",
+          "threeparttable", "threeparttablex", "titlesec", "tocbibind",
           "trimspaces", "ulem", "units", "utopia", "varwidth", "wrapfig",
-          "fvextra", "xurl"
+          "fvextra"
           )
         tinytex::tlmgr_install(missing_packages)
         ```
