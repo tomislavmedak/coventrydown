@@ -1,3 +1,24 @@
+# Contents
+
+-   [Coventrydown](#coventrydown)
+-   [Oxforddown](#oxforddown)
+-   [How to cite](#how-to-cite)
+-   [Requirements](#requirements)
+-   [How to use](#how-to-use)
+    -   [How-to chapters](#how-to-chapters)
+    -   [Video tutorials](#video-tutorials)
+    -   [Writing your thesis](#writing-your-thesis)
+    -   [Building your entire thesis](#building-your-entire-thesis)
+        -   [PDF output](#pdf-output)
+        -   [Gitbook output](#gitbook-output)
+        -   [BS4 book output](#bs4-book-output)
+        -   [Word output](#word-output)
+    -   [Building a single chapter](#building-a-single-chapter)
+-   [Customisations and extensions](#customisations-and-extensions)
+-   [Limitations](#limitations)
+    -   [Gotchas](#gotchas)
+    -   [Output formats](#output-formats)
+
 # Coventrydown
 
 Coventrydown is a fork of Ulrik Lyngs's [oxfordown](https://github.com/ulyngs/oxforddown). Oxford University uses a [LaTeX thesis template](https://github.com/mcmanigle/OxThesis) that is similar to Coventry University's thesis structure. Below you will find Ulik Lyngs's detailed instricutions on how to build a thesis using oxforddown. He has created a series of [video tutorials on YouTube](https://www.youtube.com/watch?v=LBHxcuCMjnk&list=PLkIUogDmN_nA6f3UJ0tWHlxGITUjbuldE) to guide you through the individual steps.
@@ -37,25 +58,6 @@ To add a mini-ToC to chapters, add `\minitoc` after the chapter title and adapt 
 To build the thesis, you simply knit `index.Rmd`.
 
 What follows are Ulik's instructions for oxforddown.
-
-# Contents
-
--   [Requirements](#requirements)
--   [How to cite](#how-to-cite)
--   [How to use](#how-to-use)
-    -   [How-to chapters](#how-to-chapters)
-    -   [Video tutorials](#video-tutorials)
-    -   [Writing your thesis](#writing-your-thesis)
-    -   [Building your entire thesis](#building-your-entire-thesis)
-        -   [PDF output](#pdf-output)
-        -   [Gitbook output](#gitbook-output)
-        -   [BS4 book output](#bs4-book-output)
-        -   [Word output](#word-output)
-    -   [Building a single chapter](#building-a-single-chapter)
--   [Customisations and extensions](#customisations-and-extensions)
--   [Limitations](#limitations)
-    -   [Gotchas](#gotchas)
-    -   [Output formats](#output-formats)
 
 # Oxforddown
 
